@@ -1,4 +1,4 @@
-import { BookOpen, Database, GitCommit, ToggleLeft, ToggleRight, RotateCcw } from 'lucide-react';
+import { BookOpen, Database, GitCommit, ToggleLeft, ToggleRight } from 'lucide-react';
 import type { RepoMeta } from '@dune/shared/types';
 import { formatCompact, formatNumber } from '../lib/utils';
 
@@ -31,12 +31,18 @@ export function TopBar({
       id="dune-top-bar"
       className="h-12 border-b border-[#3A2B33] bg-[#0A0B14] px-4 flex items-center justify-between font-mono-dune text-xs select-none z-20 shrink-0 text-[#EAE2D4] shadow-sm"
     >
-      {/* Left: Brand + Repo Identity */}
+      {/* Left: Brand (clickable logo → home) + Repo Identity */}
       <div className="flex items-center gap-4 min-w-0">
         <div className="flex items-center gap-2.5 min-w-0">
-          <span className="font-serif-dune font-semibold tracking-[0.2em] text-[#F0DFB4] text-base drop-shadow-[0_1px_3px_rgba(240,223,180,0.25)]">
+          {/* Clickable DUNE logo — navigates back to the home/connect screen */}
+          <button
+            id="btn-logo-home"
+            onClick={onChangeRepo}
+            title="Go home — connect a different repository"
+            className="font-serif-dune font-semibold tracking-[0.2em] text-[#F0DFB4] text-base drop-shadow-[0_1px_3px_rgba(240,223,180,0.25)] cursor-pointer hover:text-white hover:drop-shadow-[0_1px_12px_rgba(240,223,180,0.6)] transition-all active:scale-95 bg-transparent border-none p-0"
+          >
             DUNE
-          </span>
+          </button>
           <span className="text-[#57392C]">/</span>
           <span className="font-mono-dune text-[#EAE2D4] font-medium tracking-wide text-xs truncate">
             {meta?.name ?? fallbackName ?? '—'}
@@ -92,15 +98,7 @@ export function TopBar({
           </button>
         )}
 
-        {/* Change / Reset Repo */}
-        <button
-          onClick={onChangeRepo}
-          title="Change repository or re-index"
-          className="px-2.5 py-1 text-[#EAE2D4]/75 hover:text-[#F0DFB4] border border-[#3A2B33] hover:border-[#C89B6B]/60 bg-[#171833]/30 hover:bg-[#171833]/60 text-[11px] inline-flex items-center gap-1 transition-colors cursor-pointer rounded-md"
-        >
-          <RotateCcw className="w-3 h-3 text-[#C89B6B]" />
-          <span className="hidden sm:inline">SWITCH REPO</span>
-        </button>
+
 
         {/* Context Button */}
         <button
