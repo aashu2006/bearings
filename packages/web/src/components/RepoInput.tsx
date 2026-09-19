@@ -1,7 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import { Terminal, Compass, Layers, ShieldCheck, CornerDownLeft, Sparkles, ChevronDown, AlertCircle } from 'lucide-react';
 import { DesertDunes } from './DesertDunes';
-import { SandstormGust } from './SandstormGust';
 import { SAMPLE_REPOS } from '../config';
 
 interface RepoInputProps {
@@ -15,47 +14,15 @@ interface RepoInputProps {
 
 export function RepoInput({ onConnect, onUseSample, isLoading = false, error = null }: RepoInputProps) {
   const [url, setUrl] = useState('');
-  const [hasScrolledPastHero, setHasScrolledPastHero] = useState(false);
-  const [isGustActive, setIsGustActive] = useState(false);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const sectionTwoRef = useRef<HTMLElement>(null);
-  const gustTriggeredRef = useRef(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (url.trim()) {
       onConnect(url.trim());
     }
-  };
-
-  // Orchestrated sandstorm gust when scrolling from hero into Section 2
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!containerRef.current || !sectionTwoRef.current) return;
-      const scrollPos = containerRef.current.scrollTop;
-      const heroHeight = window.innerHeight * 0.45;
-
-      if (scrollPos > heroHeight && !gustTriggeredRef.current) {
-        gustTriggeredRef.current = true;
-        setHasScrolledPastHero(true);
-        setIsGustActive(true);
-      } else if (scrollPos <= 40) {
-        // Reset when user returns to very top so they can experience it again if re-scrolled
-        gustTriggeredRef.current = false;
-        setHasScrolledPastHero(false);
-      }
-    };
-
-    const container = containerRef.current;
-    if (container) {
-      container.addEventListener('scroll', handleScroll, { passive: true });
-      return () => container.removeEventListener('scroll', handleScroll);
-    }
-  }, []);
-
-  const triggerManualGust = () => {
-    setIsGustActive(true);
   };
 
   const scrollToSectionTwo = () => {
@@ -69,11 +36,7 @@ export function RepoInput({ onConnect, onUseSample, isLoading = false, error = n
       className="relative w-full h-full overflow-y-auto overflow-x-hidden select-text"
       style={{ backgroundColor: 'var(--sky-deep)' }}
     >
-      {/* Orchestrated Sandstorm Gust Wipe */}
-      <SandstormGust
-        isActive={isGustActive}
-        onComplete={() => setIsGustActive(false)}
-      />
+
 
       {/* ========================================================= */}
       {/* HERO SECTION: Full-bleed, Left content, Right dune horizon */}
@@ -92,14 +55,6 @@ export function RepoInput({ onConnect, onUseSample, isLoading = false, error = n
           </div>
 
           <div className="flex items-center gap-4">
-            <button
-              type="button"
-              onClick={triggerManualGust}
-              className="text-[#C89B6B]/70 hover:text-[#F0DFB4] transition-colors text-[11px] cursor-pointer"
-              title="Test the desert wind gust"
-            >
-              [Gust]
-            </button>
             <button
               type="button"
               onClick={onUseSample}
