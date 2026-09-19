@@ -36,8 +36,6 @@ export function RepoInput({ onConnect, onUseSample, isLoading = false, error = n
       className="relative w-full h-full overflow-y-auto overflow-x-hidden select-text"
       style={{ backgroundColor: 'var(--sky-deep)' }}
     >
-
-
       {/* ========================================================= */}
       {/* HERO SECTION: Full-bleed, Left content, Right dune horizon */}
       {/* ========================================================= */}

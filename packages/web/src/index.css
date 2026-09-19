@@ -101,31 +101,6 @@
   animation: sandDrift 7s linear infinite;
 }
 
-/* Sandstorm gust wipe */
-@keyframes sandstormWipe {
-  0% {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-  20% {
-    opacity: 0.85;
-  }
-  50% {
-    opacity: 0.95;
-  }
-  80% {
-    opacity: 0.7;
-  }
-  100% {
-    transform: translateX(-100%);
-    opacity: 0;
-  }
-}
-
-.animate-sandstorm-gust {
-  animation: sandstormWipe 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
 /* Subtle glowing animation for background dune layers during AI query processing */
 @keyframes moonDunePulse {
   0%, 100% {
@@ -178,7 +153,6 @@
   .animate-caravan,
   .animate-twinkle,
   .animate-sand-drift,
-  .animate-sandstorm-gust,
   .animate-moon-pulse,
   .animate-moon-ridge,
   .animate-moon-aura {
