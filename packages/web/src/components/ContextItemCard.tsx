@@ -22,12 +22,12 @@ export function ContextItemCard({ item, onOpenFile }: ContextItemCardProps) {
   return (
     <div
       id={`context-item-${item.id}`}
-      className="border border-neutral-800 bg-neutral-900/40 p-3.5 font-mono text-xs space-y-2.5 hover:border-neutral-700 transition-colors rounded-xl"
+      className="border border-[#3A2B33] bg-[#171833]/40 p-3.5 font-mono text-xs space-y-2.5 hover:border-[#C89B6B]/60 transition-colors rounded-xl"
     >
       {/* Category header & Author badge */}
       <div className="flex items-center justify-between flex-wrap gap-1">
         <span
-          className={`text-[10px] px-1.5 py-0.2 border uppercase tracking-wider font-bold rounded ${getTypeColor()}`}
+          className={`text-[10px] px-1.5 border uppercase tracking-wider font-bold rounded ${getTypeColor()}`}
         >
           {item.type === 'dead-end'
             ? 'DEAD END'
@@ -37,12 +37,12 @@ export function ContextItemCard({ item, onOpenFile }: ContextItemCardProps) {
         </span>
         {/* A human must always be able to tell which parts of the record a model wrote. */}
         {item.authoredBy === 'agent' ? (
-          <span className="inline-flex items-center gap-1 px-1.5 py-0.2 bg-purple-500/10 border border-purple-500/30 text-purple-300 text-[10px] font-mono tracking-wider uppercase rounded">
+          <span className="inline-flex items-center gap-1 px-1.5 bg-purple-500/10 border border-purple-500/30 text-purple-300 text-[10px] font-mono tracking-wider uppercase rounded">
             <Bot className="w-3 h-3" />
             [ AGENT-AUTHORED ]
           </span>
         ) : (
-          <span className="inline-flex items-center gap-1 px-1.5 py-0.2 bg-neutral-800 border border-neutral-700 text-neutral-300 text-[10px] font-mono tracking-wider uppercase rounded">
+          <span className="inline-flex items-center gap-1 px-1.5 bg-[#241C2E] border border-[#57392C] text-[#EAE2D4] text-[10px] font-mono tracking-wider uppercase rounded">
             <User className="w-3 h-3" />
             [ HUMAN ]
           </span>
@@ -50,17 +50,17 @@ export function ContextItemCard({ item, onOpenFile }: ContextItemCardProps) {
       </div>
 
       {/* Title */}
-      <div className="text-white font-semibold text-xs leading-snug">
+      <div className="text-[#F0DFB4] font-semibold text-xs leading-snug">
         {item.title}
       </div>
 
       {/* Body */}
-      <p className="text-neutral-300 text-[11px] leading-relaxed bg-neutral-950/50 p-2.5 border border-neutral-900 rounded-lg whitespace-pre-line">
+      <p className="text-[#EAE2D4] text-[11px] leading-relaxed bg-[#0A0B14]/50 p-2.5 border border-[#241C2E] rounded-lg whitespace-pre-line">
         {item.body}
       </p>
 
       {/* Footer metadata: file paths and timestamp */}
-      <div className="pt-1 flex items-start justify-between gap-2 text-[10px] text-neutral-400 border-t border-neutral-900">
+      <div className="pt-1 flex items-start justify-between gap-2 text-[10px] text-[#C89B6B] border-t border-[#241C2E]">
         {item.files.length > 0 ? (
           <div className="flex flex-col gap-0.5 min-w-0">
             {item.files.map((file) => (
@@ -68,19 +68,19 @@ export function ContextItemCard({ item, onOpenFile }: ContextItemCardProps) {
                 key={file}
                 type="button"
                 onClick={() => onOpenFile?.(file)}
-                className="text-neutral-300 hover:text-white flex items-center gap-1 transition-colors cursor-pointer group min-w-0"
+                className="text-[#EAE2D4] hover:text-[#F0DFB4] flex items-center gap-1 transition-colors cursor-pointer group min-w-0"
                 title="Open source snapshot"
               >
-                <FileCode className="w-3 h-3 text-neutral-500 group-hover:text-amber-400 shrink-0" />
+                <FileCode className="w-3 h-3 text-[#EAE2D4]/50 group-hover:text-amber-400 shrink-0" />
                 <span className="truncate group-hover:underline">{file}</span>
               </button>
             ))}
           </div>
         ) : (
-          <span className="text-neutral-600">No file pinned</span>
+          <span className="text-[#57392C]">No file pinned</span>
         )}
 
-        <span className="text-neutral-400 shrink-0" title={item.createdAt}>
+        <span className="text-[#C89B6B] shrink-0" title={item.createdAt}>
           {timeAgo(item.createdAt)}
         </span>
       </div>

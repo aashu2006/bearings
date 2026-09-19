@@ -104,7 +104,7 @@ export function CustomGraphNode({ data }: NodeProps<Node<GraphNodeViewData>>) {
         {/* Kind badge and inbound count */}
         <div className="mt-1.5 flex items-center justify-between gap-1.5">
           <span
-            className={`text-[10px] px-1.5 py-0.2 border uppercase tracking-wider font-mono-dune rounded ${KIND_STYLES[node.kind].badge}`}
+            className={`text-[10px] px-1.5 border uppercase tracking-wider font-mono-dune rounded ${KIND_STYLES[node.kind].badge}`}
           >
             {node.entryPoint && node.kind !== 'entry' ? `${node.kind} · entry` : node.kind}
           </span>

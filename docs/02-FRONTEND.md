@@ -53,7 +53,7 @@ Developers work in dark themes and a graph of coloured nodes reads better on dar
 
 **2. One accent colour, used sparingly.** Amber is the accent. It marks the recommended file, the active node, the primary action. If everything is accented, nothing is. A screen should have one or two amber elements, not eight.
 
-**3. Monospace for anything from the codebase.** File paths, symbol names, line numbers, code. Prose is sans. This split is what makes the interface legible at a glance and it must be applied consistently.
+**3. Monospace is the default voice.** What shipped is mono-first: `body` is monospace, so paths, symbol names, line numbers, code *and* prose are all set in it, and the interface reads as one instrument rather than two registers. Fraunces, a serif, is the exception, used for headings and section titles. See "Typography".
 
 ### What to avoid
 
@@ -63,6 +63,16 @@ Developers work in dark themes and a graph of coloured nodes reads better on dar
 - Rounded corners above 8px, which read as consumer rather than tool
 - Large hero text or marketing copy anywhere inside the app
 - More than two font weights in use at once
+
+### Where the shipped app diverges, deliberately
+
+The theme that shipped is a desert night, not the neutral instrument this section describes, and three items on the avoid list above were overruled on purpose. They are recorded here so the next person knows they were decisions, not oversights:
+
+- **Screen 1 is a landing page**, with hero type, a scroll-triggered sandstorm and a section explaining the product. A judge meets the product there before they meet the tool.
+- **Motion is ambient and slow**: a caravan crosses the horizon over 48s, stars twinkle, dunes glow while a query runs. All of it is disabled under `prefers-reduced-motion`.
+- **Radii reach 12–16px** on cards and panels, and glows and backdrop blur are used as depth.
+
+What was *not* overruled: dark by default, typography carrying the hierarchy, skeletons over spinners, and the mono rule above.
 
 ### The test
 
@@ -76,45 +86,37 @@ Define these once as CSS variables. Never hardcode a colour or a spacing value a
 
 ```css
 :root {
-  /* surfaces, darkest to lightest */
-  --bg:          #0B0D10;   /* page */
-  --surface:     #121519;   /* panels, cards */
-  --surface-2:   #181C22;   /* raised: inputs, hover */
-  --border:      #232931;   /* all borders */
-  --border-soft: #1A1F26;   /* dividers inside a panel */
+  /* surfaces, darkest to lightest — a desert night */
+  --sky-deep:  #0A0B14;   /* page, and the darkest panels */
+  --sky-mid:   #171833;   /* panels, cards, raised surfaces */
+  --dune-far:  #241C2E;   /* hover, pressed, the recommended node */
+  --dune-mid:  #3A2B33;   /* all borders */
+  --dune-near: #57392C;   /* stronger borders: inputs, selects */
 
-  /* text */
-  --text:        #E6E9EE;   /* primary */
-  --text-muted:  #9BA4B0;   /* secondary, labels */
-  --text-dim:    #6B7684;   /* tertiary, line numbers */
-
-  /* accent */
-  --accent:      #F0A22E;   /* amber, the one accent */
-  --accent-dim:  #7A5417;   /* accent borders, backgrounds */
-
-  /* semantic */
-  --ok:          #4ADE80;
-  --warn:        #FBBF24;
-  --error:       #F87171;
-  --info:        #60A5FA;
-
-  /* graph node categories */
-  --node-entry:  #F0A22E;   /* entry points, amber */
-  --node-route:  #60A5FA;
-  --node-service:#A78BFA;
-  --node-model:  #4ADE80;
-  --node-util:   #6B7684;
+  /* text and accent */
+  --ink:  #EAE2D4;        /* body text */
+  --sand: #C89B6B;        /* labels, secondary text, the quieter accent */
+  --moon: #F0DFB4;        /* headings, the primary action, the active node */
 }
 ```
+
+These eight variables are the palette, defined in `packages/web/src/index.css`. Semantic colours come from Tailwind directly rather than from variables: `emerald` for a decision, `red` for a dead end and every error state, `amber` for a constraint and for a pending suggestion, and the per-kind graph colours in `KIND_STYLES` (`CustomGraphNode.tsx`).
+
+**Two accents, not one.** Sand carries labels and secondary text; moon marks headings, the primary button and the active node. The spec above asked for one; two shipped, and on a dark desert background they read as one family rather than as competition.
+
 
 ### Typography
 
 ```css
---font-sans: 'Inter', system-ui, sans-serif;
---font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+--font-serif: 'Fraunces', Georgia, serif;
+--font-mono:  'IBM Plex Mono', Menlo, Monaco, Consolas, monospace;
 ```
 
-Load both from Google Fonts. Scale, and use nothing outside it:
+**Mono-first.** `body` is monospace, so the whole interface is monospace unless something opts out. That inverts the rule the rest of this section was written around: rather than mono marking what comes from the codebase, mono is the default voice of the instrument and everything in it — paths, prose, labels — is set in it. Fraunces, a serif, carries headings and section titles: it is the one warm, non-technical note in the interface. Inter is loaded at 400 for the rare line of running prose (a low-confidence candidate's reason) and is used almost nowhere else.
+
+Fonts load without blocking the first paint: `index.html` preloads the stylesheet and applies it with the `media="print"` swap, and requests only the weights in use — Fraunces 300/400/600, IBM Plex Mono 400/500/600/700 plus italic 400, Inter 400. Adding a weight means editing that URL.
+
+Scale, and use nothing outside it:
 
 | Token | Size / line-height | Use |
 | --- | --- | --- |

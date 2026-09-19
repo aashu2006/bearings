@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Dune: a moon over two dune ridges, in the app's own palette. -->
+  <rect width="32" height="32" rx="6" fill="#0A0B14"/>
+  <circle cx="22" cy="10" r="4.5" fill="#F0DFB4"/>
+  <path d="M0 24c5-6 9-6 14-1s9 4 18-3v12H0z" fill="#57392C"/>
+  <path d="M0 27c6-4 10-3 15 1s11 1 17-3v7H0z" fill="#C89B6B"/>
+</svg>

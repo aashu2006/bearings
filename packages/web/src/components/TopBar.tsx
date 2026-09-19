@@ -108,7 +108,7 @@ export function TopBar({
         >
           <BookOpen className="w-3.5 h-3.5 text-[#0A0B14]" />
           <span className="font-mono-dune">CONTEXT</span>
-          <span className="px-1.5 py-0.2 bg-[#0A0B14] text-[#F0DFB4] text-[10px] font-bold rounded">
+          <span className="px-1.5 bg-[#0A0B14] text-[#F0DFB4] text-[10px] font-bold rounded">
             {contextCount}
           </span>
         </button>

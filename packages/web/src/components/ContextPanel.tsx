@@ -154,25 +154,25 @@ export function ContextPanel({
   return (
     <div
       id="screen-context-drawer"
-      className="fixed inset-y-0 right-0 z-40 w-full max-w-xl bg-neutral-950 border-l border-neutral-800 shadow-2xl flex flex-col font-mono animate-in slide-in-from-right duration-200"
+      className="fixed inset-y-0 right-0 z-40 w-full max-w-xl bg-[#0A0B14] border-l border-[#3A2B33] shadow-2xl flex flex-col font-mono animate-in slide-in-from-right duration-200"
     >
       {/* Drawer Header */}
-      <div className="h-14 border-b border-neutral-800 px-4 flex items-center justify-between shrink-0 bg-neutral-900/70">
+      <div className="h-14 border-b border-[#3A2B33] px-4 flex items-center justify-between shrink-0 bg-[#171833]/70">
         <div>
-          <div className="text-[10px] uppercase tracking-widest text-neutral-400">
+          <div className="text-[10px] uppercase tracking-widest text-[#C89B6B]">
             SHARED REPOSITORY BRAIN
           </div>
-          <h2 className="text-sm font-bold text-white uppercase tracking-wider">
+          <h2 className="text-sm font-bold text-[#F0DFB4] uppercase tracking-wider">
             TEAM CONTEXT
           </h2>
-          {repoName && <div className="text-[10px] text-neutral-400 truncate max-w-[260px]">{repoName}</div>}
+          {repoName && <div className="text-[10px] text-[#C89B6B] truncate max-w-[260px]">{repoName}</div>}
         </div>
 
         <div className="flex items-center gap-2">
           <button
             id="btn-export-context"
             onClick={onOpenExport}
-            className="px-2.5 py-1.5 border border-neutral-800 hover:border-neutral-700 bg-neutral-900 text-neutral-300 hover:text-white text-xs uppercase tracking-wider flex items-center gap-1.5 transition-colors cursor-pointer rounded-md"
+            className="px-2.5 py-1.5 border border-[#3A2B33] hover:border-[#C89B6B]/60 bg-[#171833] text-[#EAE2D4] hover:text-[#F0DFB4] text-xs uppercase tracking-wider flex items-center gap-1.5 transition-colors cursor-pointer rounded-md"
             title="Export context to Markdown"
           >
             <FileDown className="w-3.5 h-3.5" />
@@ -181,7 +181,7 @@ export function ContextPanel({
 
           <button
             onClick={onClose}
-            className="p-1.5 text-neutral-400 hover:text-white transition-colors cursor-pointer rounded-md"
+            className="p-1.5 text-[#C89B6B] hover:text-[#F0DFB4] transition-colors cursor-pointer rounded-md"
             title="Close drawer (Esc)"
           >
             <X className="w-4 h-4" />
@@ -190,7 +190,7 @@ export function ContextPanel({
       </div>
 
       {/* Action Bar: New Record button & Filter Tabs */}
-      <div className="px-4 py-2.5 border-b border-neutral-850 bg-neutral-950 flex items-center justify-between gap-2 shrink-0">
+      <div className="px-4 py-2.5 border-b border-[#3A2B33] bg-[#0A0B14] flex items-center justify-between gap-2 shrink-0">
         <div className="flex items-center gap-1">
           {(['all', 'decision', 'dead-end', 'constraint'] as TabType[]).map((tab) => {
             const label =
@@ -208,8 +208,8 @@ export function ContextPanel({
                 onClick={() => setActiveTab(tab)}
                 className={`px-2 py-1 text-[11px] uppercase tracking-wider transition-colors cursor-pointer rounded ${
                   activeTab === tab
-                    ? 'bg-neutral-800 text-white font-bold border-b border-neutral-400'
-                    : 'text-neutral-400 hover:text-neutral-200'
+                    ? 'bg-[#241C2E] text-[#F0DFB4] font-bold border-b border-[#C89B6B]'
+                    : 'text-[#C89B6B] hover:text-[#EAE2D4]'
                 }`}
               >
                 {label}
@@ -223,14 +223,14 @@ export function ContextPanel({
             onClick={handleRefresh}
             disabled={isRefreshing}
             title="Draft suggestions from the commits since this repo was indexed"
-            className="px-2 py-1 bg-neutral-900 border border-neutral-700 hover:bg-neutral-800 text-amber-300 text-[11px] uppercase tracking-wider flex items-center gap-1 cursor-pointer transition-colors rounded-md disabled:opacity-60 disabled:cursor-wait"
+            className="px-2 py-1 bg-[#171833] border border-[#57392C] hover:bg-[#241C2E] text-amber-300 text-[11px] uppercase tracking-wider flex items-center gap-1 cursor-pointer transition-colors rounded-md disabled:opacity-60 disabled:cursor-wait"
           >
             {isRefreshing ? <Loader2 className="w-3 h-3 animate-spin" /> : <GitPullRequestArrow className="w-3 h-3" />}
             <span>{isRefreshing ? 'READING DIFF…' : 'SUGGEST'}</span>
           </button>
           <button
             onClick={() => setShowAddForm(!showAddForm)}
-            className="px-2 py-1 bg-neutral-900 border border-neutral-700 hover:bg-neutral-800 text-neutral-200 text-[11px] uppercase tracking-wider flex items-center gap-1 cursor-pointer transition-colors rounded-md"
+            className="px-2 py-1 bg-[#171833] border border-[#57392C] hover:bg-[#241C2E] text-[#EAE2D4] text-[11px] uppercase tracking-wider flex items-center gap-1 cursor-pointer transition-colors rounded-md"
           >
             <Plus className="w-3 h-3" />
             <span>{showAddForm ? 'CANCEL' : 'RECORD'}</span>
@@ -246,7 +246,7 @@ export function ContextPanel({
             className={`text-[11px] px-3 py-2 border rounded-lg ${
               refreshNote.isError
                 ? 'text-red-300 bg-red-950/40 border-red-500/40'
-                : 'text-neutral-300 bg-neutral-900/60 border-neutral-800'
+                : 'text-[#EAE2D4] bg-[#171833]/60 border-[#3A2B33]'
             }`}
           >
             {refreshNote.text}
@@ -257,20 +257,20 @@ export function ContextPanel({
         {showAddForm && (
           <form
             onSubmit={handleCreateSubmit}
-            className="border border-neutral-700 bg-neutral-900/90 p-3.5 space-y-3 font-mono text-xs rounded-xl"
+            className="border border-[#57392C] bg-[#171833]/90 p-3.5 space-y-3 font-mono text-xs rounded-xl"
           >
-            <div className="text-xs font-bold text-white uppercase tracking-wider flex items-center justify-between">
+            <div className="text-xs font-bold text-[#F0DFB4] uppercase tracking-wider flex items-center justify-between">
               <span>RECORD REPOSITORY MEMORY</span>
             </div>
 
             <div>
-              <label className="text-[10px] uppercase text-neutral-400 block mb-1">
+              <label className="text-[10px] uppercase text-[#C89B6B] block mb-1">
                 Category
               </label>
               <select
                 value={newType}
                 onChange={(e) => setNewType(e.target.value as ContextType)}
-                className="w-full bg-neutral-950 border border-neutral-700 px-2.5 py-1.5 text-neutral-200 text-xs rounded-lg"
+                className="w-full bg-[#0A0B14] border border-[#57392C] px-2.5 py-1.5 text-[#EAE2D4] text-xs rounded-lg"
               >
                 <option value="decision">DECISION (Architectural choices)</option>
                 <option value="dead-end">DEAD END (Tested & removed approaches)</option>
@@ -279,7 +279,7 @@ export function ContextPanel({
             </div>
 
             <div>
-              <label className="text-[10px] uppercase text-neutral-400 block mb-1">
+              <label className="text-[10px] uppercase text-[#C89B6B] block mb-1">
                 Summary Title
               </label>
               <input
@@ -288,12 +288,12 @@ export function ContextPanel({
                 placeholder="e.g. Keep API validation inside route middleware"
                 value={newTitle}
                 onChange={(e) => setNewTitle(e.target.value)}
-                className="w-full bg-neutral-950 border border-neutral-700 px-2.5 py-1.5 text-neutral-200 text-xs placeholder:text-neutral-600 font-mono rounded-lg"
+                className="w-full bg-[#0A0B14] border border-[#57392C] px-2.5 py-1.5 text-[#EAE2D4] text-xs placeholder:text-[#57392C] font-mono rounded-lg"
               />
             </div>
 
             <div>
-              <label className="text-[10px] uppercase text-neutral-400 block mb-1">
+              <label className="text-[10px] uppercase text-[#C89B6B] block mb-1">
                 Context Details
               </label>
               <textarea
@@ -302,12 +302,12 @@ export function ContextPanel({
                 placeholder="Why was this chosen? What failed before? What must agents remember?"
                 value={newBody}
                 onChange={(e) => setNewBody(e.target.value)}
-                className="w-full bg-neutral-950 border border-neutral-700 px-2.5 py-1.5 text-neutral-200 text-xs placeholder:text-neutral-600 font-mono rounded-lg"
+                className="w-full bg-[#0A0B14] border border-[#57392C] px-2.5 py-1.5 text-[#EAE2D4] text-xs placeholder:text-[#57392C] font-mono rounded-lg"
               />
             </div>
 
             <div>
-              <label className="text-[10px] uppercase text-neutral-400 block mb-1">
+              <label className="text-[10px] uppercase text-[#C89B6B] block mb-1">
                 Relevant Files (Optional, comma-separated)
               </label>
               <input
@@ -315,7 +315,7 @@ export function ContextPanel({
                 placeholder="src/routes/auth.ts, src/middleware/auth.ts"
                 value={newFiles}
                 onChange={(e) => setNewFiles(e.target.value)}
-                className="w-full bg-neutral-950 border border-neutral-700 px-2.5 py-1.5 text-neutral-200 text-xs placeholder:text-neutral-600 font-mono rounded-lg"
+                className="w-full bg-[#0A0B14] border border-[#57392C] px-2.5 py-1.5 text-[#EAE2D4] text-xs placeholder:text-[#57392C] font-mono rounded-lg"
               />
             </div>
 
@@ -328,7 +328,7 @@ export function ContextPanel({
             <button
               type="submit"
               disabled={isSaving}
-              className="w-full py-2 bg-neutral-100 hover:bg-white text-neutral-950 font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer rounded-lg disabled:opacity-60 disabled:cursor-wait flex items-center justify-center gap-2"
+              className="w-full py-2 bg-[#F0DFB4] hover:bg-[#FFF5DD] text-[#0A0B14] font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer rounded-lg disabled:opacity-60 disabled:cursor-wait flex items-center justify-center gap-2"
             >
               {isSaving && <Loader2 className="w-3.5 h-3.5 animate-spin" />}
               {isSaving ? 'SAVING…' : 'SAVE TO TEAM CONTEXT'}
@@ -358,10 +358,10 @@ export function ContextPanel({
         {isLoading ? (
           <div className="space-y-3 animate-pulse">
             {[0, 1, 2].map((i) => (
-              <div key={i} className="border border-neutral-800 bg-neutral-900/40 p-3.5 rounded-xl space-y-2">
-                <div className="h-3 w-20 bg-neutral-800 rounded" />
-                <div className="h-3 w-2/3 bg-neutral-800 rounded" />
-                <div className="h-10 w-full bg-neutral-900 rounded" />
+              <div key={i} className="border border-[#3A2B33] bg-[#171833]/40 p-3.5 rounded-xl space-y-2">
+                <div className="h-3 w-20 bg-[#241C2E] rounded" />
+                <div className="h-3 w-2/3 bg-[#241C2E] rounded" />
+                <div className="h-10 w-full bg-[#171833] rounded" />
               </div>
             ))}
           </div>
@@ -377,7 +377,7 @@ export function ContextPanel({
           />
         ) : (
           <div className="space-y-3">
-            <div className="text-[10px] uppercase tracking-widest text-neutral-400">
+            <div className="text-[10px] uppercase tracking-widest text-[#C89B6B]">
               RECORDED CONTEXT ({filteredItems.length})
             </div>
             {filteredItems.map((item) => (
@@ -395,27 +395,27 @@ export function ContextPanel({
       {mcpUrl && (
       <div
         id="mcp-connection-section"
-        className="border-t border-neutral-800 bg-neutral-900/60 p-4 shrink-0 font-mono text-xs"
+        className="border-t border-[#3A2B33] bg-[#171833]/60 p-4 shrink-0 font-mono text-xs"
       >
-        <div className="flex items-center gap-2 text-white font-bold text-xs uppercase tracking-wider mb-1">
-          <Server className="w-3.5 h-3.5 text-neutral-400" />
+        <div className="flex items-center gap-2 text-[#F0DFB4] font-bold text-xs uppercase tracking-wider mb-1">
+          <Server className="w-3.5 h-3.5 text-[#C89B6B]" />
           <span>CONNECT AN AI AGENT</span>
         </div>
 
-        <p className="text-[11px] text-neutral-400 leading-normal mb-2.5">
+        <p className="text-[11px] text-[#C89B6B] leading-normal mb-2.5">
           Give your coding agent access to the same repository brain.
         </p>
 
         <div className="mb-2">
-          <span className="text-[10px] text-neutral-400 uppercase tracking-wider block mb-1">
+          <span className="text-[10px] text-[#C89B6B] uppercase tracking-wider block mb-1">
             MCP ENDPOINT
           </span>
-          <div className="flex items-center gap-1.5 bg-neutral-950 border border-neutral-800 px-2.5 py-1.5 text-[11px] text-neutral-300 rounded-lg">
+          <div className="flex items-center gap-1.5 bg-[#0A0B14] border border-[#3A2B33] px-2.5 py-1.5 text-[11px] text-[#EAE2D4] rounded-lg">
             <span className="truncate flex-1">{mcpUrl}</span>
             <button
               id="btn-copy-mcp"
               onClick={handleCopyMcp}
-              className="px-2 py-0.5 bg-neutral-800 hover:bg-neutral-700 text-neutral-200 text-[10px] uppercase tracking-wider flex items-center gap-1 transition-colors cursor-pointer shrink-0 rounded"
+              className="px-2 py-0.5 bg-[#241C2E] hover:bg-[#3A2B33] text-[#EAE2D4] text-[10px] uppercase tracking-wider flex items-center gap-1 transition-colors cursor-pointer shrink-0 rounded"
             >
               {mcpCopied ? (
                 <>
@@ -432,7 +432,7 @@ export function ContextPanel({
           </div>
         </div>
 
-        <div className="text-[10px] text-neutral-400 flex items-center justify-between">
+        <div className="text-[10px] text-[#C89B6B] flex items-center justify-between">
           <span>Exposes: get_project_context • find_where_to_change • save_decision</span>
         </div>
       </div>

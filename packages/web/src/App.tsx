@@ -288,19 +288,19 @@ function DuneConsole() {
     <div className="w-screen h-screen flex flex-col bg-[#0A0B14] text-[#EAE2D4] overflow-hidden font-mono">
       {/* SCREEN 1: Connect Repository */}
       {screen === 'connect' && (
-        <div className="flex-1 w-full h-full overflow-hidden relative">
+        <main className="flex-1 w-full h-full overflow-hidden relative">
           <RepoInput
             onConnect={handleConnect}
             onUseSample={() => handleConnect(SAMPLE_REPO_URL)}
             isLoading={isConnecting}
             error={connectError}
           />
-        </div>
+        </main>
       )}
 
       {/* SCREEN 1 TRANSFORM: Indexing Progress */}
       {screen === 'indexing' && job && (
-        <div className="flex-1 overflow-y-auto flex items-center justify-center p-6 relative" style={{ backgroundColor: 'var(--sky-deep)' }}>
+        <main className="flex-1 overflow-y-auto flex items-center justify-center p-6 relative" style={{ backgroundColor: 'var(--sky-deep)' }}>
           {/* Desert background with caravan traversal */}
           <DesertDunes />
           <IndexProgress
@@ -313,7 +313,7 @@ function DuneConsole() {
             onCancel={handleBackToConnect}
             onComplete={() => setScreen('main')}
           />
-        </div>
+        </main>
       )}
 
       {/* SCREEN 2: Main Repository Experience */}
@@ -331,15 +331,17 @@ function DuneConsole() {
             onChangeRepo={handleBackToConnect}
           />
 
+          <h1 className="sr-only">Dune — codebase map for {repoName ?? 'this repository'}</h1>
+
           {repoQuery.isError ? (
-            <div className="flex-1 flex items-center justify-center p-6">
+            <main className="flex-1 flex items-center justify-center p-6">
               <ErrorState
                 title="COULD NOT LOAD THIS REPOSITORY"
                 reason={errorMessage(repoQuery.error)}
                 actionLabel="TRY AGAIN"
                 onRetry={() => repoQuery.refetch()}
               />
-            </div>
+            </main>
           ) : (
           /* Main Layout: Codebase Map on Left, Query & Answer on Right as a Dropdown */
           <main className="flex-1 flex flex-col lg:flex-row overflow-hidden relative">

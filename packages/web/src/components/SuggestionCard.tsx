@@ -47,7 +47,7 @@ export function SuggestionCard({
   return (
     <div
       id={`suggestion-${suggestion.id}`}
-      className="border border-neutral-800 border-l-2 border-l-amber-500/70 bg-neutral-900/50 p-3.5 font-mono text-xs space-y-3 rounded-xl"
+      className="border border-[#3A2B33] border-l-2 border-l-amber-500/70 bg-[#171833]/50 p-3.5 font-mono text-xs space-y-3 rounded-xl"
     >
       {/* Header */}
       <div className="flex items-center justify-between">
@@ -58,7 +58,7 @@ export function SuggestionCard({
         <button
           onClick={() => setIsEditing(!isEditing)}
           disabled={busy !== null}
-          className="text-neutral-400 hover:text-white text-[10px] flex items-center gap-1 cursor-pointer rounded px-1.5 py-0.5 disabled:opacity-40"
+          className="text-[#C89B6B] hover:text-[#F0DFB4] text-[10px] flex items-center gap-1 cursor-pointer rounded px-1.5 py-0.5 disabled:opacity-40"
         >
           <Edit3 className="w-3 h-3" />
           <span>{isEditing ? 'DONE' : 'EDIT'}</span>
@@ -68,13 +68,13 @@ export function SuggestionCard({
       {isEditing ? (
         <div className="space-y-2.5 pt-1">
           <div>
-            <label className="text-[10px] uppercase text-neutral-400 block mb-1">
+            <label className="text-[10px] uppercase text-[#C89B6B] block mb-1">
               Category
             </label>
             <select
               value={type}
               onChange={(e) => setType(e.target.value as ContextType)}
-              className="w-full bg-neutral-950 border border-neutral-700 px-2 py-1 text-xs text-neutral-200 rounded-lg"
+              className="w-full bg-[#0A0B14] border border-[#57392C] px-2 py-1 text-xs text-[#EAE2D4] rounded-lg"
             >
               <option value="decision">DECISION</option>
               <option value="dead-end">DEAD END</option>
@@ -83,62 +83,62 @@ export function SuggestionCard({
           </div>
 
           <div>
-            <label className="text-[10px] uppercase text-neutral-400 block mb-1">
+            <label className="text-[10px] uppercase text-[#C89B6B] block mb-1">
               Summary
             </label>
             <input
               type="text"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="w-full bg-neutral-950 border border-neutral-700 px-2 py-1 text-xs text-neutral-200 font-mono rounded-lg"
+              className="w-full bg-[#0A0B14] border border-[#57392C] px-2 py-1 text-xs text-[#EAE2D4] font-mono rounded-lg"
             />
           </div>
 
           <div>
-            <label className="text-[10px] uppercase text-neutral-400 block mb-1">
+            <label className="text-[10px] uppercase text-[#C89B6B] block mb-1">
               Reason / Background
             </label>
             <textarea
               rows={3}
               value={body}
               onChange={(e) => setBody(e.target.value)}
-              className="w-full bg-neutral-950 border border-neutral-700 px-2 py-1 text-xs text-neutral-200 font-mono rounded-lg"
+              className="w-full bg-[#0A0B14] border border-[#57392C] px-2 py-1 text-xs text-[#EAE2D4] font-mono rounded-lg"
             />
           </div>
 
           <div>
-            <label className="text-[10px] uppercase text-neutral-400 block mb-1">
+            <label className="text-[10px] uppercase text-[#C89B6B] block mb-1">
               Related Files (comma-separated)
             </label>
             <input
               type="text"
               value={files}
               onChange={(e) => setFiles(e.target.value)}
-              className="w-full bg-neutral-950 border border-neutral-700 px-2 py-1 text-xs text-neutral-200 font-mono rounded-lg"
+              className="w-full bg-[#0A0B14] border border-[#57392C] px-2 py-1 text-xs text-[#EAE2D4] font-mono rounded-lg"
             />
           </div>
         </div>
       ) : (
         <>
           <div>
-            <span className="text-[10px] font-bold text-neutral-400 uppercase tracking-wider block mb-0.5">
+            <span className="text-[10px] font-bold text-[#C89B6B] uppercase tracking-wider block mb-0.5">
               {type === 'dead-end'
                 ? 'DEAD END'
                 : type === 'decision'
                 ? 'DECISION'
                 : 'CONSTRAINT'}
             </span>
-            <div className="text-white font-semibold text-xs">{title}</div>
+            <div className="text-[#F0DFB4] font-semibold text-xs">{title}</div>
           </div>
 
-          <p className="text-neutral-300 text-[11px] leading-relaxed bg-neutral-950/60 p-2 border border-neutral-850 rounded-lg whitespace-pre-line">
+          <p className="text-[#EAE2D4] text-[11px] leading-relaxed bg-[#0A0B14]/60 p-2 border border-[#3A2B33] rounded-lg whitespace-pre-line">
             {body}
           </p>
 
-          <div className="flex items-center justify-between gap-2 text-[10px] text-neutral-400">
+          <div className="flex items-center justify-between gap-2 text-[10px] text-[#C89B6B]">
             {files.trim() && (
               <span className="truncate">
-                File: <code className="text-neutral-300">{files}</code>
+                File: <code className="text-[#EAE2D4]">{files}</code>
               </span>
             )}
             <span className="shrink-0 ml-auto" title={suggestion.createdAt}>
@@ -155,11 +155,11 @@ export function SuggestionCard({
       )}
 
       {/* Action Buttons */}
-      <div className="flex items-center gap-2 pt-1 border-t border-neutral-850">
+      <div className="flex items-center gap-2 pt-1 border-t border-[#3A2B33]">
         <button
           onClick={handleSave}
           disabled={busy !== null || !canSave}
-          className="flex-1 py-1.5 px-2 bg-neutral-100 hover:bg-white text-neutral-950 font-bold text-[11px] uppercase tracking-wider flex items-center justify-center gap-1 cursor-pointer transition-colors rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
+          className="flex-1 py-1.5 px-2 bg-[#F0DFB4] hover:bg-[#FFF5DD] text-[#0A0B14] font-bold text-[11px] uppercase tracking-wider flex items-center justify-center gap-1 cursor-pointer transition-colors rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {busy === 'saving' ? <Loader2 className="w-3 h-3 animate-spin" /> : <Check className="w-3 h-3" />}
           <span>{busy === 'saving' ? 'SAVING…' : 'SAVE TO CONTEXT'}</span>
@@ -167,7 +167,7 @@ export function SuggestionCard({
         <button
           onClick={() => run('dismissing', () => onDismiss(suggestion.id))}
           disabled={busy !== null}
-          className="py-1.5 px-3 border border-neutral-800 hover:bg-neutral-800 text-neutral-400 hover:text-white text-[11px] uppercase tracking-wider flex items-center gap-1 cursor-pointer transition-colors rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
+          className="py-1.5 px-3 border border-[#3A2B33] hover:bg-[#241C2E] text-[#C89B6B] hover:text-[#F0DFB4] text-[11px] uppercase tracking-wider flex items-center gap-1 cursor-pointer transition-colors rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {busy === 'dismissing' ? <Loader2 className="w-3 h-3 animate-spin" /> : <X className="w-3 h-3" />}
           <span>DISMISS</span>
